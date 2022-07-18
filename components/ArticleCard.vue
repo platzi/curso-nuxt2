@@ -1,8 +1,51 @@
 <template>
   <div class="article-card">
-    Article Card
+    <h3>{{ title }}</h3>
+    <div class="author">
+      <p>Por {{ author }}</p>
+      <small>Fecha de publicación: {{ date }}</small>
+    </div>
+    <figure>
+      <img :src="cover" alt="cover" />
+    </figure>
+    <p>{{ description }}</p>
+    <div class="actions">
+      <a class="btn" :href="slug">Ir al post</a>
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'ArticleCard',
+  props: {
+    slug: {
+      type: String,
+      default: '',
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+    author: {
+      type: String,
+      default: '',
+    },
+    date: {
+      type: Date,
+      default: '',
+    },
+    cover: {
+      type: String,
+      default: '',
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .article-card {
