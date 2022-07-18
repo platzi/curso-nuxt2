@@ -1,10 +1,50 @@
 <template>
-  <p>{{ $route.params.slug }}</p>
+  <div class="box">
+    <article class="post">
+      <h1>{{ post.title }}</h1>
+      <div class="author">
+        <p>Por {{ post.authpr }}</p>
+        <small
+          >Fecha de publicación:
+          {{ post.updated }}</small
+        >
+      </div>
+      <p>{{ post.description }}</p>
+      <figure>
+        <img
+          :src="post.cover"
+          :alt="post.cover"
+        />
+        <figcaption>Portada - {{ post.title }}</figcaption>
+      </figure>
+      <div class="markdown">
+        {{ post.content }}
+      </div>
+    </article>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'ArticlePage',
+  data() {
+    return {
+      post: {
+        slug: 'mi-primer-post',
+        title: 'Mi primer post',
+        author: 'Diana Martínez',
+        updated: '8/06/2022',
+        description: 'Lorem ispum dolor sit amet',
+        cover: 'https://via.placeholder.com/1024x420',
+        content: `
+          # Title
+          ## Second title
+
+          Lorem ipsum dolor sit amet
+        `,
+      }
+    };
+  },
 }
 </script>
 
