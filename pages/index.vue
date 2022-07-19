@@ -3,10 +3,7 @@
     <AboutMe />
     <div class="content">
       <main>
-        <ArticleCard
-          v-for="article in articles"
-          :key="article.slug"
-        />
+        <ArticleCard v-for="article in articles" :key="article.slug" />
       </main>
     </div>
   </div>
@@ -14,12 +11,12 @@
 
 <script>
 export default {
-    name: "IndexPage",
-    data() {
-      return {
-        articles: [1,2,3,4]
-      };
-    },
+  name: 'IndexPage',
+  data() {
+    return {
+      articles: [],
+    }
+  },
 }
 </script>
 
