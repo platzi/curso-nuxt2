@@ -3,7 +3,7 @@
     <article class="post">
       <h1>{{ post.title }}</h1>
       <div class="author">
-        <p>Por {{ post.authpr }}</p>
+        <p>Por {{ post.author }}</p>
         <small
           >Fecha de publicación:
           {{ post.updated }}</small
