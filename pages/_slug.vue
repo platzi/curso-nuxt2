@@ -40,11 +40,14 @@ export default {
   components: {
     VueMarkdown,
   },
-  asyncData({ params, $http }) {
-    const { slug } = params;
-    const article = $http.$get(`http://localhost:9999/.netlify/functions/article?slug=${slug}`);
+  asyncData({ params, $http, isDev }) {
+    const { slug } = params
+    const url = isDev ? 'http://localhost:9999' : 'https://miniblog-platzi.netlify.app';
+    const article = $http.$get(
+      `${url}/.netlify/functions/article?slug=${slug}`
+    )
 
-    return article;
+    return article
   },
   head() {
     return {
@@ -62,16 +65,20 @@ export default {
         cover: this.article?.cover[0].thumbnails.full.url,
         content: this.article?.content,
       }
-    }
+    },
   },
   methods: {
     async createComment(comment) {
+      const url =
+        location.hostname === 'localhost'
+          ? 'http://localhost:9999'
+          : 'https://miniblog-platzi.netlify.app'
       await fetch(
-        `http://localhost:9999/.netlify/functions/comment?article=${this.article._id}`,
+        `${url}/.netlify/functions/comment?article=${this.article._id}`,
         { method: 'post', body: JSON.stringify(comment) }
       )
     },
-  }
+  },
 }
 </script>
 
