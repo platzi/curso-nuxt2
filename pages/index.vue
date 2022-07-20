@@ -30,7 +30,7 @@ export default {
       date: new Date(a.updated),
       cover: a.cover[0]?.thumbnails.large.url,
     }))
-  }
+  },
 }
 </script>
 
