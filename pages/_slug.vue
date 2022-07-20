@@ -42,10 +42,10 @@ export default {
   },
   asyncData({ params, $http, isDev }) {
     const { slug } = params
-    const url = isDev ? 'http://localhost:9999' : 'https://miniblog-platzi.netlify.app';
-    const article = $http.$get(
-      `${url}/.netlify/functions/article?slug=${slug}`
-    )
+    const url = isDev
+      ? 'http://localhost:9999'
+      : 'https://miniblog-platzi.netlify.app'
+    const article = $http.$get(`${url}/.netlify/functions/article?slug=${slug}`)
 
     return article
   },
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     async createComment(comment) {
-      this.$nuxt.$loading.start();
+      this.$nuxt.$loading.start()
       const url =
         location.hostname === 'localhost'
           ? 'http://localhost:9999'
@@ -78,8 +78,8 @@ export default {
         `${url}/.netlify/functions/comment?article=${this.article._id}`,
         { method: 'post', body: JSON.stringify(comment) }
       )
-      this.$nuxt.refresh();
-      this.$nuxt.$loading.finish();
+      this.$nuxt.refresh()
+      this.$nuxt.$loading.finish()
     },
   },
 }
