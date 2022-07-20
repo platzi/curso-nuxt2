@@ -14,10 +14,8 @@ const headers = {
   'Access-Control-Allow-Credentials': true,
 }
 
-exports.handler = async function (evt) {
+exports.handler = async function () {
   try {
-    console.log(`Event: ${JSON.stringify(evt, null, 2)}`)
-
     const articles = (await db('articles').select().all())
       .map((e) => ({
         _id: e.id,
