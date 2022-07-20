@@ -24,6 +24,14 @@ export default {
   components: {
     VueMarkdown,
   },
+  asyncData({ params, $http }) {
+    const { slug } = params;
+    const article = $http.$get(`http://localhost:9999/.netlify/functions/article?slug=${slug}`);
+    // eslint-disable-next-line no-console
+    console.log(article);
+
+    return article;
+  },
   data() {
     return {
       post: {
